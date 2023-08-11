@@ -29,7 +29,16 @@ router.post('/', async (req, res) => {
 
     res.status(200).json(message);
   } catch (error) {
-    res.status(500).json({ error })
+    if (error.response.status === 401) {
+      return res.status(401).json({
+        error: "Please provide a valid API key.",
+      });
+    }
+
+    res.status(500).json({
+      error:
+        "An error occurred while generating response. Please try again later.",
+    })
   }
 })
 
