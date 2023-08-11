@@ -19,4 +19,4 @@ app.use(bodyParser.json())
 //Routes
 app.use('/find_movie', require('./routes/index'))
 
-app.listen(PORT, () => console.log(`Server runnig on port ${PORT}`))
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
