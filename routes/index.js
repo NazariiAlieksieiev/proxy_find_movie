@@ -4,9 +4,10 @@ const router = express.Router();
 const needle = require('needle');
 
 const API_KEY = process.env.REACT_APP_API_KEY;
-const URL = process.env.REACT_APP_URL;
 
-router.get('/', async (req, res) => {
+router.post('/', async (req, res) => {
+  const { sendedMessages } = req.body;
+  console.log(sendedMessages)
   try {
     const headers = {
       'Content-Type': 'application/json',
@@ -16,8 +17,9 @@ router.get('/', async (req, res) => {
     const data = {
       model: 'gpt-3.5-turbo',
       messages: [
-        { role: 'system', content: 'You are a helpful assistant.' },
-        { role: 'user', content: `Як справи?` }
+        { role: 'system', 
+        content: '1. Ти сервіс з пошуку фільмів, серіалі, мультиків, мультсеріалів 2. Дублюй назви англійською'},
+        ...sendedMessages
       ]
     };
     
